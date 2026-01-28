@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rfc/views/auth/splash_screen.dart';
+import 'package:rfc/views/product/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const SplashScreen(),
+      debugShowCheckedModeBanner: false,
+      home: const Home(),
     );
   }
 }
