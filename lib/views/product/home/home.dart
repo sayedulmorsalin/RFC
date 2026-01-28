@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rfc/views/product/home/all_item_card.dart';
 import 'package:rfc/views/product/home/item_card.dart';
 
 class Home extends StatefulWidget {
@@ -10,22 +11,22 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final h1_color = Colors.white;
-  final h2_color = Colors.white;
-  final h3_color = Colors.white;
+  final h2_color = Colors.red;
+  final h3_color = Colors.red;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.redAccent,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.redAccent[100],
         title: Text("Welcome to RFC", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: h1_color)),
         centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.person, color: Colors.white),
             onPressed: () {
-              // Navigate to cart screen
+              // profile page
             },
           ),
         ],
@@ -38,9 +39,17 @@ class _HomeState extends State<Home> {
             children: [
               _buildRestaurantHeader(),
               const SizedBox(height: 24),
-              _buildSectionTitle("Menu"),
+              _buildSectionTitle("Popular Menu"),
               const SizedBox(height: 16),
               _buildMenuList(),
+              const SizedBox(height: 24),
+              _buildSectionTitle("Fast Delivery"),
+              const SizedBox(height: 16),
+              _buildMenuList(),
+              const SizedBox(height: 24),
+              _buildSectionTitle("All Menu"),
+              const SizedBox(height: 16),
+              _builAlldMenuList(),
             ],
           ),
         ),
@@ -81,10 +90,10 @@ class _HomeState extends State<Home> {
         const SizedBox(height: 8),
         Row(
           children: [
-            Icon(Icons.star, color: Colors.yellow, size: 20),
-            Text(" 4.5 (200+ ratings)",style: TextStyle(color: h3_color)),
+            Icon(Icons.run_circle_outlined, color: Colors.red, size: 20),
+            Text(" Very fast delivery ",style: TextStyle(color: h3_color)),
             SizedBox(width: 16),
-            Icon(Icons.timer_outlined, size: 20),
+            Icon(Icons.timer_outlined, color: Colors.red, size: 20),
             Text(" 25-35 min",style: TextStyle(color: h3_color)),
           ],
         ),
@@ -135,6 +144,45 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+  Widget _builAlldMenuList() {
+    final menu = [
+      {
+        "name": "Classic Burger",
+        "description": "A juicy beef patty with lettuce, tomato, and our special sauce.",
+        "price": "\$9.99",
+        "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=765&q=80"
+      },
+      {
+        "name": "Cheese Burger",
+        "description": "The classic burger with a slice of melted cheddar cheese.",
+        "price": "\$10.99",
+        "image": "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?auto=format&fit=crop&w=687&q=80"
+      },
+      {
+        "name": "Fries",
+        "description": "Crispy golden fries.",
+        "price": "\$3.99",
+        "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=1170&q=80"
+      },
+    ];
+
+    return GridView.builder(
+      shrinkWrap: true, // ⭐ IMPORTANT inside SingleChildScrollView
+      physics: const NeverScrollableScrollPhysics(), // disable inner scroll
+      itemCount: menu.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 1, // ⭐ 2 items per row
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: 1.3, // adjust height/width ratio
+      ),
+      itemBuilder: (context, index) {
+        return buildAllMenuItemCard(menu[index]);
+      },
+    );
+  }
+
 
 
 
