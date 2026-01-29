@@ -17,9 +17,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.redAccent,
       appBar: AppBar(
-        backgroundColor: Colors.redAccent[100],
+        backgroundColor: Colors.redAccent,
         title: Text("Welcome to RFC", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: h1_color)),
         centerTitle: true,
         actions: [
