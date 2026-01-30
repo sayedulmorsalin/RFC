@@ -40,6 +40,8 @@ class _HomeState extends State<Home> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              _buildSearchField(),
+              const SizedBox(height: 24),
               _buildRestaurantHeader(),
               const SizedBox(height: 24),
               _buildSectionTitle("Popular Menu"),
@@ -64,6 +66,22 @@ class _HomeState extends State<Home> {
           },
           child: const Icon(Icons.shopping_cart),
         )
+    );
+  }
+
+  Widget _buildSearchField() {
+    return const TextField(
+      decoration: InputDecoration(
+        hintText: "Search for food...",
+        hintStyle: TextStyle(color: Colors.black54),
+        prefixIcon: Icon(Icons.search, color: Colors.black54,),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          borderSide: BorderSide.none,
+        ),
+        filled: true,
+        fillColor: Colors.white,
+      ),
     );
   }
 
@@ -175,10 +193,10 @@ class _HomeState extends State<Home> {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: menu.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1,
+        crossAxisCount: 2,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 1.3,
+        childAspectRatio: 0.6,
       ),
       itemBuilder: (context, index) {
         return buildAllMenuItemCard(menu[index]);

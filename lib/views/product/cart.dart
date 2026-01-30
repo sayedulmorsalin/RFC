@@ -35,6 +35,7 @@ class _CartPageState extends State<CartPage> {
       appBar: AppBar(
         backgroundColor: background,
         title: Text('My Cart', style: TextStyle(color: text_color, fontSize: 24, fontWeight: FontWeight.bold),),
+        iconTheme: IconThemeData(color: text_color),
       ),
       body: Column(
         children: [
