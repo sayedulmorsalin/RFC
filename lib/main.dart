@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rfc/views/product/home/home.dart';
+import 'package:get/get.dart';
+import 'package:rfc/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      initialRoute: AppRoutes.home,
+      getPages: AppRoutes.routes,
     );
   }
 }

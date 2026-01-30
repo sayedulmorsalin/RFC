@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:rfc/routes/routes.dart';
 import 'package:rfc/views/product/home/all_item_card.dart';
 import 'package:rfc/views/product/home/item_card.dart';
 
@@ -11,8 +14,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final h1_color = Colors.white;
-  final h2_color = Colors.red;
-  final h3_color = Colors.red;
+  final h2_color = Colors.white;
+  final h3_color = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class _HomeState extends State<Home> {
           IconButton(
             icon: const Icon(Icons.person, color: Colors.white),
             onPressed: () {
-              // profile page
+              Get.toNamed(AppRoutes.profile);
             },
           ),
         ],
@@ -57,7 +60,7 @@ class _HomeState extends State<Home> {
       ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Navigate to cart screen
+            Get.toNamed(AppRoutes.cart);
           },
           child: const Icon(Icons.shopping_cart),
         )
@@ -90,10 +93,10 @@ class _HomeState extends State<Home> {
         const SizedBox(height: 8),
         Row(
           children: [
-            Icon(Icons.run_circle_outlined, color: Colors.red, size: 20),
+            Icon(Icons.run_circle_outlined, color: Colors.white, size: 20),
             Text(" Very fast delivery ",style: TextStyle(color: h3_color)),
             SizedBox(width: 16),
-            Icon(Icons.timer_outlined, color: Colors.red, size: 20),
+            Icon(Icons.timer_outlined, color: Colors.white, size: 20),
             Text(" 25-35 min",style: TextStyle(color: h3_color)),
           ],
         ),
@@ -168,14 +171,14 @@ class _HomeState extends State<Home> {
     ];
 
     return GridView.builder(
-      shrinkWrap: true, // ⭐ IMPORTANT inside SingleChildScrollView
-      physics: const NeverScrollableScrollPhysics(), // disable inner scroll
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: menu.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1, // ⭐ 2 items per row
+        crossAxisCount: 1,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 1.3, // adjust height/width ratio
+        childAspectRatio: 1.3,
       ),
       itemBuilder: (context, index) {
         return buildAllMenuItemCard(menu[index]);
