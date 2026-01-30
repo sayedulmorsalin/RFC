@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:rfc/views/auth/login.dart';
+import 'package:rfc/views/auth/register.dart';
 import 'package:rfc/views/product/cart.dart';
 import 'package:rfc/views/product/home/home.dart';
 import 'package:rfc/views/profile/user_profile.dart';
@@ -18,7 +19,7 @@ class AppRoutes {
     GetPage(name: profile, page: () => const UserProfile()),
     GetPage(name: cart, page: () => const CartPage()),
     GetPage(name: login, page: () => const Login()),
-    //GetPage(name: register, page: () => const Register()),
+    GetPage(name: register, page: () => const Register()),
 
   ];
 }

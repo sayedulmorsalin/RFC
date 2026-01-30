@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:rfc/components/button.dart';
 import 'package:rfc/components/textfield.dart';
+import 'package:rfc/routes/routes.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -114,7 +117,7 @@ class _LoginState extends State<Login> {
                   Text('Don\'t have an account?', style: TextStyle(color: text_color),),
                   TextButton(
                     onPressed: () {
-
+                      Get.toNamed(AppRoutes.register);
                     },
                     child: Text('Register', style: TextStyle(color: text_color, fontWeight: FontWeight.bold),),
                   ),
