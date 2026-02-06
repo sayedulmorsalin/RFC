@@ -6,19 +6,16 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.redAccent,
       appBar: AppBar(
-        title: const Text('Profile', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.redAccent,
+        title: const Text('Profile', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              _buildProfileHeader(),
+              _buildProfileHeader(context),
               const SizedBox(height: 32),
               _buildProfileMenuList(context),
             ],
@@ -28,23 +25,25 @@ class UserProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileHeader() {
-    return const Column(
+  Widget _buildProfileHeader(BuildContext context) {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+
+    return Column(
       children: [
-        CircleAvatar(
+        const CircleAvatar(
           radius: 50,
           backgroundImage: NetworkImage(
               'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Text(
           'John Doe',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: scheme.onBackground),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           'johndoe@example.com',
-          style: TextStyle(fontSize: 16, color: Colors.white),
+          style: TextStyle(fontSize: 16, color: scheme.onBackground.withOpacity(0.7)),
         ),
       ],
     );
@@ -54,6 +53,7 @@ class UserProfile extends StatelessWidget {
     return Column(
       children: [
         _buildProfileMenuItem(
+          context,
           icon: Icons.person_outline,
           title: 'Edit Profile',
           onTap: () {
@@ -61,6 +61,7 @@ class UserProfile extends StatelessWidget {
           },
         ),
         _buildProfileMenuItem(
+          context,
           icon: Icons.settings_outlined,
           title: 'Settings',
           onTap: () {
@@ -68,6 +69,7 @@ class UserProfile extends StatelessWidget {
           },
         ),
         _buildProfileMenuItem(
+          context,
           icon: Icons.credit_card,
           title: 'Payment Methods',
           onTap: () {
@@ -75,6 +77,7 @@ class UserProfile extends StatelessWidget {
           },
         ),
         _buildProfileMenuItem(
+          context,
           icon: Icons.history,
           title: 'Order History',
           onTap: () {
@@ -83,9 +86,10 @@ class UserProfile extends StatelessWidget {
         ),
         const Divider(),
         _buildProfileMenuItem(
+          context,
           icon: Icons.logout,
           title: 'Logout',
-          textColor: Colors.yellow,
+          textColor: Theme.of(context).colorScheme.primary,
           onTap: () {
             // Handle logout
           },
@@ -94,16 +98,20 @@ class UserProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileMenuItem({
+  Widget _buildProfileMenuItem(
+    BuildContext context, {
     required IconData icon,
     required String title,
     required VoidCallback onTap,
-    Color textColor = Colors.white,
+    Color? textColor,
   }) {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+    final Color resolved = textColor ?? scheme.onBackground;
+
     return ListTile(
-      leading: Icon(icon, color: textColor),
-      title: Text(title, style: TextStyle(color: textColor, fontSize: 16)),
-      trailing: const Icon(Icons.arrow_forward_ios,color: Colors.white, size: 16),
+      leading: Icon(icon, color: resolved),
+      title: Text(title, style: TextStyle(color: resolved, fontSize: 16)),
+      trailing: Icon(Icons.arrow_forward_ios, color: scheme.onBackground.withOpacity(0.6), size: 16),
       onTap: onTap,
     );
   }

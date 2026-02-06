@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-Widget buildAllMenuItemCard(Map<String, dynamic> item) {
+Widget buildAllMenuItemCard(BuildContext context, Map<String, dynamic> item) {
   return Card(
     margin: const EdgeInsets.only(bottom: 12.0),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(0,0,0, 12.0),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 12.0),
       child: Row(
         children: [
           Expanded(
@@ -15,8 +15,7 @@ Widget buildAllMenuItemCard(Map<String, dynamic> item) {
                 Row(
                   children: [
                     Expanded(
-                      child:
-                      ClipRRect(
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.network(
                           item["image"],
@@ -34,17 +33,24 @@ Widget buildAllMenuItemCard(Map<String, dynamic> item) {
                     children: [
                       Text(
                         item["name"],
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         item["description"],
-                        style: const TextStyle(color: Colors.black54),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(
+                            context,
+                          ).textTheme.titleMedium?.color?.withOpacity(0.7),
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Text(
                         item["price"],
-                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -52,8 +58,6 @@ Widget buildAllMenuItemCard(Map<String, dynamic> item) {
               ],
             ),
           ),
-
-
         ],
       ),
     ),

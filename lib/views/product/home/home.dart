@@ -13,21 +13,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final h1_color = Colors.white;
-  final h2_color = Colors.white;
-  final h3_color = Colors.white;
-
   @override
   Widget build(BuildContext context) {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: Colors.redAccent,
       appBar: AppBar(
-        backgroundColor: Colors.redAccent,
-        title: Text("Welcome to RFC", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: h1_color)),
+        title: Text(
+          "Welcome to RFC",
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: scheme.onPrimary,
+          ),
+        ),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.person, color: Colors.white),
+            icon: Icon(Icons.person, color: scheme.onPrimary),
             onPressed: () {
               Get.toNamed(AppRoutes.profile);
             },
@@ -58,29 +61,37 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-
       ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Get.toNamed(AppRoutes.cart);
-          },
-          child: const Icon(Icons.shopping_cart),
-        )
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed(AppRoutes.cart);
+        },
+        child: const Icon(Icons.shopping_cart),
+      ),
     );
   }
 
   Widget _buildSearchField() {
-    return const TextField(
+    return TextField(
       decoration: InputDecoration(
         hintText: "Search for food...",
-        hintStyle: TextStyle(color: Colors.black54),
-        prefixIcon: Icon(Icons.search, color: Colors.black54,),
+        hintStyle: TextStyle(
+          color: Theme.of(
+            context,
+          ).textTheme.titleMedium?.color?.withOpacity(0.6),
+        ),
+        prefixIcon: Icon(
+          Icons.search,
+          color: Theme.of(
+            context,
+          ).textTheme.titleMedium?.color?.withOpacity(0.6),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
           borderSide: BorderSide.none,
         ),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: Theme.of(context).colorScheme.surface,
       ),
     );
   }
@@ -101,21 +112,50 @@ class _HomeState extends State<Home> {
         const SizedBox(height: 16),
         Text(
           "Raihan Food Corner",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: h2_color),
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.onBackground,
+          ),
         ),
         const SizedBox(height: 8),
         Text(
           "Chinese • Burgers • Fast Food",
-          style: TextStyle(fontSize: 16, color: h3_color),
+          style: TextStyle(
+            fontSize: 16,
+            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
+          ),
         ),
         const SizedBox(height: 8),
         Row(
           children: [
-            Icon(Icons.run_circle_outlined, color: Colors.white, size: 20),
-            Text(" Very fast delivery ",style: TextStyle(color: h3_color)),
+            Icon(
+              Icons.run_circle_outlined,
+              color: Theme.of(context).colorScheme.onBackground,
+              size: 20,
+            ),
+            Text(
+              " Very fast delivery ",
+              style: TextStyle(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onBackground.withOpacity(0.8),
+              ),
+            ),
             SizedBox(width: 16),
-            Icon(Icons.timer_outlined, color: Colors.white, size: 20),
-            Text(" 25-35 min",style: TextStyle(color: h3_color)),
+            Icon(
+              Icons.timer_outlined,
+              color: Theme.of(context).colorScheme.onBackground,
+              size: 20,
+            ),
+            Text(
+              " 25-35 min",
+              style: TextStyle(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onBackground.withOpacity(0.8),
+              ),
+            ),
           ],
         ),
       ],
@@ -125,7 +165,11 @@ class _HomeState extends State<Home> {
   Widget _buildSectionTitle(String title) {
     return Text(
       title,
-      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: h2_color),
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Theme.of(context).colorScheme.onBackground,
+      ),
     );
   }
 
@@ -133,21 +177,26 @@ class _HomeState extends State<Home> {
     final menu = [
       {
         "name": "Classic Burger",
-        "description": "A juicy beef patty with lettuce, tomato, and our special sauce.",
+        "description":
+            "A juicy beef patty with lettuce, tomato, and our special sauce.",
         "price": "\$9.99",
-        "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=765&q=80"
+        "image":
+            "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=765&q=80",
       },
       {
         "name": "Cheese Burger",
-        "description": "The classic burger with a slice of melted cheddar cheese.",
+        "description":
+            "The classic burger with a slice of melted cheddar cheese.",
         "price": "\$10.99",
-        "image": "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?auto=format&fit=crop&w=687&q=80"
+        "image":
+            "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?auto=format&fit=crop&w=687&q=80",
       },
       {
         "name": "Fries",
         "description": "Crispy golden fries.",
         "price": "\$3.99",
-        "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=1170&q=80"
+        "image":
+            "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=1170&q=80",
       },
     ];
 
@@ -159,7 +208,7 @@ class _HomeState extends State<Home> {
         itemBuilder: (context, index) {
           return SizedBox(
             width: 280,
-            child: buildMenuItemCard(menu[index]),
+            child: buildMenuItemCard(context, menu[index]),
           );
         },
       ),
@@ -170,21 +219,26 @@ class _HomeState extends State<Home> {
     final menu = [
       {
         "name": "Classic Burger",
-        "description": "A juicy beef patty with lettuce, tomato, and our special sauce.",
+        "description":
+            "A juicy beef patty with lettuce, tomato, and our special sauce.",
         "price": "\$9.99",
-        "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=765&q=80"
+        "image":
+            "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=765&q=80",
       },
       {
         "name": "Cheese Burger",
-        "description": "The classic burger with a slice of melted cheddar cheese.",
+        "description":
+            "The classic burger with a slice of melted cheddar cheese.",
         "price": "\$10.99",
-        "image": "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?auto=format&fit=crop&w=687&q=80"
+        "image":
+            "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?auto=format&fit=crop&w=687&q=80",
       },
       {
         "name": "Fries",
         "description": "Crispy golden fries.",
         "price": "\$3.99",
-        "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=1170&q=80"
+        "image":
+            "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=1170&q=80",
       },
     ];
 
@@ -199,12 +253,8 @@ class _HomeState extends State<Home> {
         childAspectRatio: 0.6,
       ),
       itemBuilder: (context, index) {
-        return buildAllMenuItemCard(menu[index]);
+        return buildAllMenuItemCard(context, menu[index]);
       },
     );
   }
-
-
-
-
 }

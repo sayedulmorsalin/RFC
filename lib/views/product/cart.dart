@@ -8,8 +8,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  final background = Colors.redAccent;
-  final text_color = Colors.white;
   // Dummy data for cart items
   final List<Map<String, dynamic>> _cartItems = [
     {
@@ -30,12 +28,11 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: background,
       appBar: AppBar(
-        backgroundColor: background,
-        title: Text('My Cart', style: TextStyle(color: text_color, fontSize: 24, fontWeight: FontWeight.bold),),
-        iconTheme: IconThemeData(color: text_color),
+        title: const Text('My Cart', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ),
       body: Column(
         children: [
@@ -54,6 +51,8 @@ class _CartPageState extends State<CartPage> {
   }
 
   Widget _buildCartItem(Map<String, dynamic> item) {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Row(
@@ -72,8 +71,8 @@ class _CartPageState extends State<CartPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(item['name'], style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: text_color)),
-                Text('\$${item['price'].toStringAsFixed(2)}', style: TextStyle(fontSize: 16, color: text_color)),
+                Text(item['name'], style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: scheme.onBackground)),
+                Text('\$${item['price'].toStringAsFixed(2)}', style: TextStyle(fontSize: 16, color: scheme.onBackground.withOpacity(0.8))),
               ],
             ),
           ),
@@ -84,10 +83,12 @@ class _CartPageState extends State<CartPage> {
   }
 
   Widget _buildQuantityControl(Map<String, dynamic> item) {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+
     return Row(
       children: [
         IconButton(
-          icon: Icon(Icons.remove_circle_outline, color: text_color,),
+          icon: Icon(Icons.remove_circle_outline, color: scheme.onBackground),
           onPressed: () {
             setState(() {
               if (item['quantity'] > 1) {
@@ -96,9 +97,9 @@ class _CartPageState extends State<CartPage> {
             });
           },
         ),
-        Text(item['quantity'].toString(), style: TextStyle(fontSize: 16, color: text_color),),
+        Text(item['quantity'].toString(), style: TextStyle(fontSize: 16, color: scheme.onBackground)),
         IconButton(
-          icon:  Icon(Icons.add_circle_outline, color: text_color,),
+          icon: Icon(Icons.add_circle_outline, color: scheme.onBackground),
           onPressed: () {
             setState(() {
               item['quantity']++;
@@ -110,6 +111,7 @@ class _CartPageState extends State<CartPage> {
   }
 
   Widget _buildOrderSummary() {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
     double subtotal = _cartItems.fold(0, (sum, item) => sum + (item['price'] * item['quantity']));
     double deliveryFee = 5.00;
     double total = subtotal + deliveryFee;
@@ -117,7 +119,7 @@ class _CartPageState extends State<CartPage> {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: background,
+        color: scheme.surface,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.2),
@@ -132,24 +134,24 @@ class _CartPageState extends State<CartPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Subtotal', style: TextStyle(fontSize: 16, color: text_color)),
-              Text('\$${subtotal.toStringAsFixed(2)}', style: TextStyle(fontSize: 16, color: text_color)),
+              Text('Subtotal', style: TextStyle(fontSize: 16, color: scheme.onSurface)),
+              Text('\$${subtotal.toStringAsFixed(2)}', style: TextStyle(fontSize: 16, color: scheme.onSurface)),
             ],
           ),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Delivery Fee', style: TextStyle(fontSize: 16, color: text_color)),
-              Text('\$${deliveryFee.toStringAsFixed(2)}', style: TextStyle(fontSize: 16, color: text_color)),
+              Text('Delivery Fee', style: TextStyle(fontSize: 16, color: scheme.onSurface)),
+              Text('\$${deliveryFee.toStringAsFixed(2)}', style: TextStyle(fontSize: 16, color: scheme.onSurface)),
             ],
           ),
           const Divider(height: 32),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Total', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: text_color)),
-              Text('\$${total.toStringAsFixed(2)}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: text_color)),
+              Text('Total', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: scheme.onSurface)),
+              Text('\$${total.toStringAsFixed(2)}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: scheme.onSurface)),
             ],
           ),
           const SizedBox(height: 16),

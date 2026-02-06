@@ -16,23 +16,18 @@ class _LoginState extends State<Login> {
   TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
-  final background = Colors.redAccent;
-  final text_color = Colors.white;
-
-
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: background,
       appBar: AppBar(
         title: Text(
           'Login',
-          style: TextStyle(color: text_color, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: background,
-
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -46,13 +41,13 @@ class _LoginState extends State<Login> {
               Text(
                 'Welcome Back',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: text_color),
+                style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
               Text(
                 'Login to your account',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: text_color),
+                style: TextStyle(fontSize: 14, color: scheme.onBackground.withOpacity(0.7)),
               ),
               const SizedBox(height: 48),
 
@@ -95,7 +90,7 @@ class _LoginState extends State<Login> {
                   onPressed: () {
 
                   },
-                  child: Text('Forgot Password?', style: TextStyle(color: text_color),),
+                  child: const Text('Forgot Password?'),
                 ),
               ),
               const SizedBox(height: 32),
@@ -103,8 +98,6 @@ class _LoginState extends State<Login> {
               CustomButton(
                 label: _isLoading ? 'Signing in...' : 'Login',
                 isLoading: _isLoading,
-                backgroundColor: text_color,
-                textColor: Colors.black,
                 onPressed: () {
 
                 },
@@ -114,12 +107,12 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Don\'t have an account?', style: TextStyle(color: text_color),),
+                  Text('Don\'t have an account?', style: TextStyle(color: scheme.onBackground.withOpacity(0.8))),
                   TextButton(
                     onPressed: () {
                       Get.toNamed(AppRoutes.register);
                     },
-                    child: Text('Register', style: TextStyle(color: text_color, fontWeight: FontWeight.bold),),
+                    child: const Text('Register', style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),

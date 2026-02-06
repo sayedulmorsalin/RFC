@@ -22,20 +22,17 @@ class _RegisterState extends State<Register> {
 
   bool _isLoading = false;
 
-  final background = Colors.redAccent;
-  final textColor = Colors.white;
-
   @override
   Widget build(BuildContext context) {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: background,
       appBar: AppBar(
         title: Text(
           'Register',
-          style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: background,
       ),
 
       body: SingleChildScrollView(
@@ -50,10 +47,9 @@ class _RegisterState extends State<Register> {
               Text(
                 'Create Account',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: textColor,
                 ),
               ),
 
@@ -62,7 +58,7 @@ class _RegisterState extends State<Register> {
               Text(
                 'Register to get started',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: textColor),
+                style: TextStyle(fontSize: 14, color: scheme.onBackground.withOpacity(0.7)),
               ),
 
               const SizedBox(height: 40),
@@ -139,8 +135,6 @@ class _RegisterState extends State<Register> {
               CustomButton(
                 label: _isLoading ? 'Creating account...' : 'Register',
                 isLoading: _isLoading,
-                backgroundColor: textColor,
-                textColor: Colors.black,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
 
@@ -155,7 +149,7 @@ class _RegisterState extends State<Register> {
                 children: [
                   Text(
                     'Already have an account?',
-                    style: TextStyle(color: textColor),
+                    style: TextStyle(color: scheme.onBackground.withOpacity(0.8)),
                   ),
                   TextButton(
                     onPressed: () {
@@ -164,7 +158,6 @@ class _RegisterState extends State<Register> {
                     child: Text(
                       'Login',
                       style: TextStyle(
-                        color: textColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

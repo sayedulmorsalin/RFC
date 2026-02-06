@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-Widget buildMenuItemCard(Map<String, dynamic> item) {
+Widget buildMenuItemCard(BuildContext context, Map<String, dynamic> item) {
   return Card(
     margin: const EdgeInsets.only(right: 12.0),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(0,0,0, 12.0),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 12.0),
       child: Row(
         children: [
           Expanded(
@@ -15,8 +15,7 @@ Widget buildMenuItemCard(Map<String, dynamic> item) {
                 Row(
                   children: [
                     Expanded(
-                      child:
-                      ClipRRect(
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.network(
                           item["image"],
@@ -32,30 +31,35 @@ Widget buildMenuItemCard(Map<String, dynamic> item) {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                    Text(
-                      item["name"],
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      item["description"],
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(color: Colors.black54),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      item["price"],
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                      Text(
+                        item["name"],
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        item["description"],
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(
+                            context,
+                          ).textTheme.labelSmall?.color?.withOpacity(0.8),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        item["price"],
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
-
-
         ],
       ),
     ),

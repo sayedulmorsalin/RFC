@@ -39,6 +39,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+    final Color textColor = scheme.onSurface;
+    final Color muted = scheme.onSurface.withOpacity(0.6);
+
     return TextFormField(
       controller: widget.controller,
       keyboardType: widget.keyboardType,
@@ -47,26 +51,23 @@ class _CustomTextFieldState extends State<CustomTextField> {
       minLines: widget.minLines,
 
 
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: textColor),
 
-      cursorColor: Colors.white,
+      cursorColor: scheme.primary,
 
       decoration: InputDecoration(
         labelText: widget.labelText,
         hintText: widget.hintText,
 
-
-        labelStyle: const TextStyle(color: Colors.white),
-        hintStyle: const TextStyle(color: Colors.white70),
-
-
-        prefixIcon: Icon(widget.prefixIcon, color: Colors.white),
+        labelStyle: TextStyle(color: muted),
+        hintStyle: TextStyle(color: muted),
+        prefixIcon: Icon(widget.prefixIcon, color: muted),
 
         suffixIcon: widget.isPasswordField
             ? IconButton(
           icon: Icon(
             _obscureText ? Icons.visibility_off : Icons.visibility,
-            color: Colors.white,
+            color: muted,
           ),
           onPressed: () {
             setState(() {
@@ -75,27 +76,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
           },
         )
             : null,
-
-
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: Colors.white),
-        ),
-
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: Colors.white, width: 2),
-        ),
-
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: Colors.white),
-        ),
-
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: Colors.white),
-        ),
       ),
 
       validator: widget.validator,
