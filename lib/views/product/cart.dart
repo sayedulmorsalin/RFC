@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -15,14 +17,14 @@ class _CartPageState extends State<CartPage> {
       "price": 9.99,
       "quantity": 1,
       "image":
-          "https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
+          "https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
     },
     {
       "name": "Fries",
       "price": 3.99,
       "quantity": 2,
       "image":
-          "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     },
   ];
 
@@ -32,7 +34,10 @@ class _CartPageState extends State<CartPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Cart', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'My Cart',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Column(
         children: [
@@ -71,8 +76,21 @@ class _CartPageState extends State<CartPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(item['name'], style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: scheme.onBackground)),
-                Text('\$${item['price'].toStringAsFixed(2)}', style: TextStyle(fontSize: 16, color: scheme.onBackground.withOpacity(0.8))),
+                Text(
+                  item['name'],
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: scheme.onBackground,
+                  ),
+                ),
+                Text(
+                  '\$${item['price'].toStringAsFixed(2)}',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: scheme.onBackground.withOpacity(0.8),
+                  ),
+                ),
               ],
             ),
           ),
@@ -97,7 +115,10 @@ class _CartPageState extends State<CartPage> {
             });
           },
         ),
-        Text(item['quantity'].toString(), style: TextStyle(fontSize: 16, color: scheme.onBackground)),
+        Text(
+          item['quantity'].toString(),
+          style: TextStyle(fontSize: 16, color: scheme.onBackground),
+        ),
         IconButton(
           icon: Icon(Icons.add_circle_outline, color: scheme.onBackground),
           onPressed: () {
@@ -112,7 +133,10 @@ class _CartPageState extends State<CartPage> {
 
   Widget _buildOrderSummary() {
     final ColorScheme scheme = Theme.of(context).colorScheme;
-    double subtotal = _cartItems.fold(0, (sum, item) => sum + (item['price'] * item['quantity']));
+    double subtotal = _cartItems.fold(
+      0,
+      (sum, item) => sum + (item['price'] * item['quantity']),
+    );
     double deliveryFee = 5.00;
     double total = subtotal + deliveryFee;
 
@@ -134,24 +158,50 @@ class _CartPageState extends State<CartPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Subtotal', style: TextStyle(fontSize: 16, color: scheme.onSurface)),
-              Text('\$${subtotal.toStringAsFixed(2)}', style: TextStyle(fontSize: 16, color: scheme.onSurface)),
+              Text(
+                'Subtotal',
+                style: TextStyle(fontSize: 16, color: scheme.onSurface),
+              ),
+              Text(
+                '\$${subtotal.toStringAsFixed(2)}',
+                style: TextStyle(fontSize: 16, color: scheme.onSurface),
+              ),
             ],
           ),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Delivery Fee', style: TextStyle(fontSize: 16, color: scheme.onSurface)),
-              Text('\$${deliveryFee.toStringAsFixed(2)}', style: TextStyle(fontSize: 16, color: scheme.onSurface)),
+              Text(
+                'Delivery Fee',
+                style: TextStyle(fontSize: 16, color: scheme.onSurface),
+              ),
+              Text(
+                '\$${deliveryFee.toStringAsFixed(2)}',
+                style: TextStyle(fontSize: 16, color: scheme.onSurface),
+              ),
             ],
           ),
           const Divider(height: 32),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Total', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: scheme.onSurface)),
-              Text('\$${total.toStringAsFixed(2)}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: scheme.onSurface)),
+              Text(
+                'Total',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: scheme.onSurface,
+                ),
+              ),
+              Text(
+                '\$${total.toStringAsFixed(2)}',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: scheme.onSurface,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -161,9 +211,12 @@ class _CartPageState extends State<CartPage> {
               // primary: Colors.redAccent,
             ),
             onPressed: () {
-              // Navigate to checkout
+              Get.toNamed('/checkout');
             },
-            child: const Text('Proceed to Checkout', style: TextStyle(fontSize: 18)),
+            child: const Text(
+              'Proceed to Checkout',
+              style: TextStyle(fontSize: 18),
+            ),
           ),
         ],
       ),

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:rfc/views/auth/login.dart';
 import 'package:rfc/views/auth/register.dart';
 import 'package:rfc/views/product/cart.dart';
+import 'package:rfc/views/product/checkout.dart';
 import 'package:rfc/views/product/home/home.dart';
 import 'package:rfc/views/profile/user_profile.dart';
 
@@ -11,8 +12,7 @@ class AppRoutes {
   static const cart = '/cart';
   static const login = '/login';
   static const register = '/register';
-
-
+  static const checkout = '/checkout';
 
   static final routes = [
     GetPage(name: home, page: () => const Home()),
@@ -20,7 +20,6 @@ class AppRoutes {
     GetPage(name: cart, page: () => const CartPage()),
     GetPage(name: login, page: () => const Login()),
     GetPage(name: register, page: () => const Register()),
-
+    GetPage(name: checkout, page: () => const Checkout()),
   ];
 }
-
