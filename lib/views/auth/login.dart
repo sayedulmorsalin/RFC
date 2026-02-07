@@ -4,6 +4,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:rfc/components/button.dart';
 import 'package:rfc/components/textfield.dart';
 import 'package:rfc/routes/routes.dart';
+
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -41,13 +42,19 @@ class _LoginState extends State<Login> {
               Text(
                 'Welcome Back',
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 'Login to your account',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: scheme.onBackground.withOpacity(0.7)),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: scheme.onBackground.withOpacity(0.7),
+                ),
               ),
               const SizedBox(height: 48),
 
@@ -87,9 +94,7 @@ class _LoginState extends State<Login> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   child: const Text('Forgot Password?'),
                 ),
               ),
@@ -99,7 +104,7 @@ class _LoginState extends State<Login> {
                 label: _isLoading ? 'Signing in...' : 'Login',
                 isLoading: _isLoading,
                 onPressed: () {
-
+                  Get.toNamed(AppRoutes.profile);
                 },
               ),
               const SizedBox(height: 16),
@@ -107,12 +112,23 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Don\'t have an account?', style: TextStyle(color: scheme.onBackground.withOpacity(0.8))),
+                  Text(
+                    'Don\'t have an account?',
+                    style: TextStyle(
+                      color: scheme.onBackground.withOpacity(0.8),
+                    ),
+                  ),
                   TextButton(
                     onPressed: () {
                       Get.toNamed(AppRoutes.register);
                     },
-                    child: const Text('Register', style: TextStyle(fontWeight: FontWeight.bold)),
+                    child: const Text(
+                      'Register',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -120,6 +136,7 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
-    );;
+    );
+    ;
   }
 }

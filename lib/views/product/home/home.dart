@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
           IconButton(
             icon: Icon(Icons.person, color: scheme.onPrimary),
             onPressed: () {
-              Get.toNamed(AppRoutes.profile);
+              Get.toNamed(AppRoutes.register);
             },
           ),
         ],

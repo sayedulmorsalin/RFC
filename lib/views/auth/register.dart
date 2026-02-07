@@ -18,7 +18,8 @@ class _RegisterState extends State<Register> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   bool _isLoading = false;
 
@@ -58,7 +59,10 @@ class _RegisterState extends State<Register> {
               Text(
                 'Register to get started',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: scheme.onBackground.withOpacity(0.7)),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: scheme.onBackground.withOpacity(0.7),
+                ),
               ),
 
               const SizedBox(height: 40),
@@ -136,9 +140,7 @@ class _RegisterState extends State<Register> {
                 label: _isLoading ? 'Creating account...' : 'Register',
                 isLoading: _isLoading,
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-
-                  }
+                  if (_formKey.currentState!.validate()) {}
                 },
               ),
 
@@ -149,7 +151,7 @@ class _RegisterState extends State<Register> {
                 children: [
                   Text(
                     'Already have an account?',
-                    style: TextStyle(color: scheme.onBackground.withOpacity(0.8)),
+                    style: TextStyle(color: scheme.onSurface.withOpacity(0.8)),
                   ),
                   TextButton(
                     onPressed: () {
@@ -159,6 +161,9 @@ class _RegisterState extends State<Register> {
                       'Login',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        color: Theme.of(
+                          context,
+                        ).textTheme.titleLarge?.color?.withOpacity(1),
                       ),
                     ),
                   ),
