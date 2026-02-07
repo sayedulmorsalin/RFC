@@ -7,7 +7,10 @@ class UserProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Profile',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -33,17 +36,25 @@ class UserProfile extends StatelessWidget {
         const CircleAvatar(
           radius: 50,
           backgroundImage: NetworkImage(
-              'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'),
+            'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
+          ),
         ),
         const SizedBox(height: 16),
         Text(
           'John Doe',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: scheme.onBackground),
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: scheme.onSurface,
+          ),
         ),
         const SizedBox(height: 4),
         Text(
           'johndoe@example.com',
-          style: TextStyle(fontSize: 16, color: scheme.onBackground.withOpacity(0.7)),
+          style: TextStyle(
+            fontSize: 16,
+            color: scheme.onSurface.withOpacity(0.7),
+          ),
         ),
       ],
     );
@@ -89,7 +100,9 @@ class UserProfile extends StatelessWidget {
           context,
           icon: Icons.logout,
           title: 'Logout',
-          textColor: Theme.of(context).colorScheme.primary,
+          textColor: Theme.of(
+            context,
+          ).textTheme.bodyLarge?.color?.withOpacity(0.6),
           onTap: () {
             // Handle logout
           },
@@ -106,12 +119,16 @@ class UserProfile extends StatelessWidget {
     Color? textColor,
   }) {
     final ColorScheme scheme = Theme.of(context).colorScheme;
-    final Color resolved = textColor ?? scheme.onBackground;
+    final Color resolved = textColor ?? scheme.onSurface;
 
     return ListTile(
       leading: Icon(icon, color: resolved),
       title: Text(title, style: TextStyle(color: resolved, fontSize: 16)),
-      trailing: Icon(Icons.arrow_forward_ios, color: scheme.onBackground.withOpacity(0.6), size: 16),
+      trailing: Icon(
+        Icons.arrow_forward_ios,
+        color: scheme.onSurface.withOpacity(0.6),
+        size: 16,
+      ),
       onTap: onTap,
     );
   }

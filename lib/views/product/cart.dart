@@ -81,15 +81,12 @@ class _CartPageState extends State<CartPage> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: scheme.onBackground,
+                    color: scheme.onSurface,
                   ),
                 ),
                 Text(
                   '\$${item['price'].toStringAsFixed(2)}',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: scheme.onBackground.withOpacity(0.8),
-                  ),
+                  style: TextStyle(fontSize: 16, color: scheme.onSurface),
                 ),
               ],
             ),
@@ -106,7 +103,7 @@ class _CartPageState extends State<CartPage> {
     return Row(
       children: [
         IconButton(
-          icon: Icon(Icons.remove_circle_outline, color: scheme.onBackground),
+          icon: Icon(Icons.remove_circle_outline, color: scheme.onSurface),
           onPressed: () {
             setState(() {
               if (item['quantity'] > 1) {
@@ -117,10 +114,10 @@ class _CartPageState extends State<CartPage> {
         ),
         Text(
           item['quantity'].toString(),
-          style: TextStyle(fontSize: 16, color: scheme.onBackground),
+          style: TextStyle(fontSize: 16, color: scheme.onSurface),
         ),
         IconButton(
-          icon: Icon(Icons.add_circle_outline, color: scheme.onBackground),
+          icon: Icon(Icons.add_circle_outline, color: scheme.onSurface),
           onPressed: () {
             setState(() {
               item['quantity']++;
@@ -160,11 +157,21 @@ class _CartPageState extends State<CartPage> {
             children: [
               Text(
                 'Subtotal',
-                style: TextStyle(fontSize: 16, color: scheme.onSurface),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(
+                    context,
+                  ).textTheme.titleMedium?.color?.withOpacity(0.6),
+                ),
               ),
               Text(
                 '\$${subtotal.toStringAsFixed(2)}',
-                style: TextStyle(fontSize: 16, color: scheme.onSurface),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(
+                    context,
+                  ).textTheme.titleMedium?.color?.withOpacity(0.6),
+                ),
               ),
             ],
           ),
@@ -174,11 +181,21 @@ class _CartPageState extends State<CartPage> {
             children: [
               Text(
                 'Delivery Fee',
-                style: TextStyle(fontSize: 16, color: scheme.onSurface),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(
+                    context,
+                  ).textTheme.titleMedium?.color?.withOpacity(0.6),
+                ),
               ),
               Text(
                 '\$${deliveryFee.toStringAsFixed(2)}',
-                style: TextStyle(fontSize: 16, color: scheme.onSurface),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(
+                    context,
+                  ).textTheme.titleMedium?.color?.withOpacity(0.6),
+                ),
               ),
             ],
           ),
@@ -191,7 +208,9 @@ class _CartPageState extends State<CartPage> {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: scheme.onSurface,
+                  color: Theme.of(
+                    context,
+                  ).textTheme.titleMedium?.color?.withOpacity(0.6),
                 ),
               ),
               Text(
@@ -199,7 +218,9 @@ class _CartPageState extends State<CartPage> {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: scheme.onSurface,
+                  color: Theme.of(
+                    context,
+                  ).textTheme.titleMedium?.color?.withOpacity(0.6),
                 ),
               ),
             ],
@@ -208,7 +229,6 @@ class _CartPageState extends State<CartPage> {
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 50),
-              // primary: Colors.redAccent,
             ),
             onPressed: () {
               Get.toNamed('/checkout');

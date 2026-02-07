@@ -115,7 +115,7 @@ class _HomeState extends State<Home> {
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.onBackground,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         const SizedBox(height: 8),
@@ -123,7 +123,7 @@ class _HomeState extends State<Home> {
           "Chinese • Burgers • Fast Food",
           style: TextStyle(
             fontSize: 16,
-            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
         ),
         const SizedBox(height: 8),
@@ -131,29 +131,25 @@ class _HomeState extends State<Home> {
           children: [
             Icon(
               Icons.run_circle_outlined,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
               size: 20,
             ),
             Text(
               " Very fast delivery ",
               style: TextStyle(
-                color: Theme.of(
-                  context,
-                ).colorScheme.onBackground.withOpacity(0.8),
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
               ),
             ),
             SizedBox(width: 16),
             Icon(
               Icons.timer_outlined,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
               size: 20,
             ),
             Text(
               " 25-35 min",
               style: TextStyle(
-                color: Theme.of(
-                  context,
-                ).colorScheme.onBackground.withOpacity(0.8),
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
               ),
             ),
           ],
@@ -168,7 +164,7 @@ class _HomeState extends State<Home> {
       style: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,
-        color: Theme.of(context).colorScheme.onBackground,
+        color: Theme.of(context).colorScheme.onSurface,
       ),
     );
   }

@@ -50,7 +50,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
       maxLines: _obscureText ? 1 : widget.maxLines,
       minLines: widget.minLines,
 
-
       style: TextStyle(color: textColor),
 
       cursorColor: scheme.primary,
@@ -59,22 +58,29 @@ class _CustomTextFieldState extends State<CustomTextField> {
         labelText: widget.labelText,
         hintText: widget.hintText,
 
-        labelStyle: TextStyle(color: muted),
-        hintStyle: TextStyle(color: muted),
-        prefixIcon: Icon(widget.prefixIcon, color: muted),
+        labelStyle: TextStyle(
+          color: Theme.of(context).textTheme.titleMedium?.color?.withOpacity(1),
+        ),
+        hintStyle: TextStyle(
+          color: Theme.of(context).textTheme.titleMedium?.color?.withOpacity(1),
+        ),
+        prefixIcon: Icon(
+          widget.prefixIcon,
+          color: Theme.of(context).textTheme.titleMedium?.color?.withOpacity(1),
+        ),
 
         suffixIcon: widget.isPasswordField
             ? IconButton(
-          icon: Icon(
-            _obscureText ? Icons.visibility_off : Icons.visibility,
-            color: muted,
-          ),
-          onPressed: () {
-            setState(() {
-              _obscureText = !_obscureText;
-            });
-          },
-        )
+                icon: Icon(
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                  color: muted,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              )
             : null,
       ),
 

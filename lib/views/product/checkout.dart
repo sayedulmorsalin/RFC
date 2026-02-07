@@ -34,7 +34,10 @@ class _CheckoutState extends State<Checkout> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Checkout', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Checkout',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -97,9 +100,17 @@ class _CheckoutState extends State<Checkout> {
 
               _buildSectionTitle(context, 'Payment Method'),
               const SizedBox(height: 12),
-              _buildPaymentTile(context, 'Cash on Delivery', Icons.payments_outlined),
+              _buildPaymentTile(
+                context,
+                'Cash on Delivery',
+                Icons.payments_outlined,
+              ),
               _buildPaymentTile(context, 'Card', Icons.credit_card),
-              _buildPaymentTile(context, 'Wallet', Icons.account_balance_wallet_outlined),
+              _buildPaymentTile(
+                context,
+                'Wallet',
+                Icons.account_balance_wallet_outlined,
+              ),
               const SizedBox(height: 24),
 
               _buildSectionTitle(context, 'Order Summary'),
@@ -112,7 +123,9 @@ class _CheckoutState extends State<Checkout> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Order placed successfully')),
+                      const SnackBar(
+                        content: Text('Order placed successfully'),
+                      ),
                     );
                   }
                 },
@@ -121,7 +134,10 @@ class _CheckoutState extends State<Checkout> {
               Text(
                 'By placing this order, you agree to our terms.',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: scheme.onBackground.withOpacity(0.6), fontSize: 12),
+                style: TextStyle(
+                  color: scheme.onSurface.withOpacity(0.6),
+                  fontSize: 12,
+                ),
               ),
             ],
           ),
@@ -133,7 +149,9 @@ class _CheckoutState extends State<Checkout> {
   Widget _buildSectionTitle(BuildContext context, String title) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+      style: Theme.of(
+        context,
+      ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
     );
   }
 
@@ -147,7 +165,9 @@ class _CheckoutState extends State<Checkout> {
         color: scheme.surface,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: selected ? scheme.primary : scheme.onSurface.withOpacity(0.2),
+          color: selected
+              ? Theme.of(context).textTheme.titleMedium!.color!
+              : Colors.transparent,
           width: selected ? 2 : 1,
         ),
       ),
@@ -161,8 +181,18 @@ class _CheckoutState extends State<Checkout> {
             _paymentMethod = value;
           });
         },
-        title: Text(label, style: TextStyle(color: scheme.onSurface)),
-        secondary: Icon(icon, color: scheme.onSurface),
+        title: Text(
+          label,
+          style: TextStyle(
+            color: Theme.of(
+              context,
+            ).textTheme.titleMedium?.color?.withOpacity(1),
+          ),
+        ),
+        secondary: Icon(
+          icon,
+          color: Theme.of(context).textTheme.titleMedium?.color?.withOpacity(1),
+        ),
       ),
     );
   }
@@ -190,7 +220,11 @@ class _CheckoutState extends State<Checkout> {
         children: [
           _summaryRow(context, 'Subtotal', '\$${subtotal.toStringAsFixed(2)}'),
           const SizedBox(height: 8),
-          _summaryRow(context, 'Delivery Fee', '\$${delivery.toStringAsFixed(2)}'),
+          _summaryRow(
+            context,
+            'Delivery Fee',
+            '\$${delivery.toStringAsFixed(2)}',
+          ),
           const Divider(height: 24),
           _summaryRow(
             context,
@@ -203,8 +237,13 @@ class _CheckoutState extends State<Checkout> {
     );
   }
 
-  Widget _summaryRow(BuildContext context, String label, String value, {bool isTotal = false}) {
-    final TextStyle? base = Theme.of(context).textTheme.bodyLarge;
+  Widget _summaryRow(
+    BuildContext context,
+    String label,
+    String value, {
+    bool isTotal = false,
+  }) {
+    final TextStyle? base = Theme.of(context).textTheme.titleMedium;
     final TextStyle? style = base?.copyWith(
       fontWeight: isTotal ? FontWeight.bold : FontWeight.w500,
       fontSize: isTotal ? 18 : 16,

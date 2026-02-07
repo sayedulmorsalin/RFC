@@ -8,11 +8,9 @@ class AppTheme {
 
   static ThemeData light() {
     final ColorScheme scheme = const ColorScheme.light(
-      background: background,
       surface: surface,
       primary: primary,
       onPrimary: Colors.white,
-      onBackground: text,
       onSurface: text,
     );
 
