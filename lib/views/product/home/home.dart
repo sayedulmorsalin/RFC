@@ -4,6 +4,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:rfc/routes/routes.dart';
 import 'package:rfc/views/product/home/all_item_card.dart';
 import 'package:rfc/views/product/home/item_card.dart';
+import 'package:rfc/views/product/view_food.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -202,9 +203,21 @@ class _HomeState extends State<Home> {
         scrollDirection: Axis.horizontal,
         itemCount: menu.length,
         itemBuilder: (context, index) {
+          final item = menu[index];
           return SizedBox(
             width: 280,
-            child: buildMenuItemCard(context, menu[index]),
+            child: buildMenuItemCard(
+              context,
+              item,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ViewFood(item: item),
+                  ),
+                );
+              },
+            ),
           );
         },
       ),
