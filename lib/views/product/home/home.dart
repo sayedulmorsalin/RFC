@@ -212,9 +212,7 @@ class _HomeState extends State<Home> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => ViewFood(item: item),
-                  ),
+                  MaterialPageRoute(builder: (context) => ViewFood(item: item)),
                 );
               },
             ),

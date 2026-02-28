@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color background = Color.fromARGB(255, 238, 96, 96);
-  static const Color text = Color.fromARGB(255, 255, 255, 255);
-  static const Color primary = Color.fromARGB(255, 238, 96, 96);
-  static const Color surface = Color.fromARGB(255, 244, 200, 200);
+  static const Color background = Colors.white;
+  static const Color text = Colors.redAccent;
+  static const Color primary = Colors.redAccent;
+  static const Color surface = Colors.white;
 
   static ThemeData light() {
     final ColorScheme scheme = const ColorScheme.light(
