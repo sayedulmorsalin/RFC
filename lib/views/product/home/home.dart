@@ -4,6 +4,7 @@ import 'package:rfc/routes/routes.dart';
 import 'package:rfc/views/product/home/all_item_card.dart';
 import 'package:rfc/views/product/home/item_card.dart';
 import 'package:rfc/views/product/view_food.dart';
+import 'package:rfc/views/product/notifications.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -137,9 +138,10 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Raihan Food Corner",
+                  "RFC",
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.w800,
+                    fontSize: 35,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -161,7 +163,10 @@ class _HomeState extends State<Home> {
             ),
           ),
           GestureDetector(
-            onTap: () => Get.toNamed(AppRoutes.profile),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const NotificationsPage()),
+            ),
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -169,7 +174,7 @@ class _HomeState extends State<Home> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
-                Icons.person_outline,
+                Icons.notifications_outlined,
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
