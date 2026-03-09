@@ -40,8 +40,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     final ColorScheme scheme = Theme.of(context).colorScheme;
-    final Color textColor = scheme.onSurface;
-    final Color muted = scheme.onSurface.withOpacity(0.6);
 
     return TextFormField(
       controller: widget.controller,
@@ -49,41 +47,24 @@ class _CustomTextFieldState extends State<CustomTextField> {
       obscureText: _obscureText,
       maxLines: _obscureText ? 1 : widget.maxLines,
       minLines: widget.minLines,
-
-      style: TextStyle(color: textColor),
-
+      style: TextStyle(color: scheme.onSurface, fontSize: 15),
       cursorColor: scheme.primary,
-
       decoration: InputDecoration(
         labelText: widget.labelText,
         hintText: widget.hintText,
-
-        labelStyle: TextStyle(
-          color: Theme.of(context).textTheme.titleMedium?.color?.withOpacity(1),
-        ),
-        hintStyle: TextStyle(
-          color: Theme.of(context).textTheme.titleMedium?.color?.withOpacity(1),
-        ),
-        prefixIcon: Icon(
-          widget.prefixIcon,
-          color: Theme.of(context).textTheme.titleMedium?.color?.withOpacity(1),
-        ),
-
+        prefixIcon: Icon(widget.prefixIcon, size: 22),
         suffixIcon: widget.isPasswordField
             ? IconButton(
                 icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: muted,
+                  _obscureText
+                      ? Icons.visibility_off_outlined
+                      : Icons.visibility_outlined,
+                  size: 22,
                 ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
+                onPressed: () => setState(() => _obscureText = !_obscureText),
               )
             : null,
       ),
-
       validator: widget.validator,
     );
   }
