@@ -116,7 +116,7 @@ Widget buildMenuItemCard(
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: const Icon(
-                          Icons.add,
+                          Icons.add_shopping_cart,
                           color: Colors.white,
                           size: 18,
                         ),
